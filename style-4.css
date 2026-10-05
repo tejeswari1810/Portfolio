@@ -1,0 +1,191 @@
+/* ===== 1. Design tokens (CSS variables) ===== */
+:root {
+  --bg: #eef2f0;
+  --surface: #ffffff;
+  --text: #14213d;
+  --muted: #4a5873;
+  --accent: #2f4bff;
+  --accent-text: #ffffff;
+  --highlight: #ffc857;
+  --border: #cfd8d4;
+
+  --font-head: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --radius: 0.75rem;
+}
+
+/* Dark theme: follows the system, unless the user picked one */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1829;
+    --surface: #17233a;
+    --text: #eaf0ff;
+    --muted: #a7b4d0;
+    --accent: #8ca0ff;
+    --accent-text: #0f1829;
+    --border: #2b3a58;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1829;
+  --surface: #17233a;
+  --text: #eaf0ff;
+  --muted: #a7b4d0;
+  --accent: #8ca0ff;
+  --accent-text: #0f1829;
+  --border: #2b3a58;
+}
+
+/* ===== 2. Base (mobile-first) ===== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  transition: background-color .3s, color .3s;
+}
+img { max-width: 100%; height: auto; display: block; }
+h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; margin: 0 0 var(--space-2); }
+h2 { font-size: 1.75rem; }
+p { margin: 0 0 var(--space-2); max-width: 65ch; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+.skip-link {
+  position: absolute; left: var(--space-2); top: -4rem;
+  background: var(--accent); color: var(--accent-text);
+  padding: var(--space-1) var(--space-2); border-radius: var(--radius); z-index: 10;
+}
+.skip-link:focus { top: var(--space-1); }
+
+/* ===== 3. Page layout: CSS Grid ===== */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;          /* mobile: one column */
+  min-height: 100vh;
+}
+
+.site-header {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-2);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.content { padding: var(--space-3) var(--space-2) var(--space-2); }
+
+/* ===== 4. Header components: Flexbox ===== */
+.profile { display: flex; align-items: center; gap: var(--space-2); }
+.profile h1 { font-size: 1.5rem; margin: 0; }
+.role { margin: 0; color: var(--muted); }
+.avatar { width: 4.5rem; height: 4.5rem; border-radius: 50%; object-fit: cover; border: 3px solid var(--highlight); }
+
+.nav ul { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); list-style: none; margin: 0; padding: 0; }
+.nav a { color: var(--text); text-decoration: none; font-weight: 600; padding: .25rem 0; border-bottom: 2px solid transparent; }
+.nav a:hover { border-bottom-color: var(--accent); }
+
+.theme-toggle {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  justify-self: start;
+  font: inherit; font-weight: 600; color: var(--text);
+  background: transparent; border: 1px solid var(--border); border-radius: 999px;
+  padding: .5rem 1rem; cursor: pointer; min-height: 44px;
+}
+.theme-toggle:hover { border-color: var(--accent); }
+.theme-toggle__icon {
+  width: 1.1rem; height: 1.1rem; border-radius: 50%;
+  background: linear-gradient(90deg, var(--highlight) 50%, var(--text) 50%);
+  border: 1px solid var(--text);
+}
+
+/* ===== 5. Hero ===== */
+.hero { padding: var(--space-3) 0 var(--space-4); }
+.hero__title { font-size: clamp(2.25rem, 8vw, 4.5rem); font-weight: 800; letter-spacing: -0.02em; max-width: 14ch; }
+.hero__text { font-size: 1.15rem; color: var(--muted); }
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: .65rem 1.4rem;
+  font: inherit; font-weight: 600; text-decoration: none;
+  border-radius: 999px; border: 2px solid var(--accent); cursor: pointer;
+  transition: transform .15s, background-color .2s;
+}
+.btn--primary { background: var(--accent); color: var(--accent-text); }
+.btn--ghost { background: transparent; color: var(--accent); }
+.btn:hover { transform: translateY(-2px); }
+
+/* ===== 6. Sections ===== */
+.section { padding: var(--space-3) 0 var(--space-4); border-top: 1px solid var(--border); }
+
+.tags { display: flex; flex-wrap: wrap; gap: var(--space-1); list-style: none; padding: 0; margin: 0; }
+.tags li { background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: .35rem 1rem; font-weight: 500; }
+
+/* Projects: Grid inside the content area */
+.projects { display: grid; grid-template-columns: 1fr; gap: var(--space-3); }
+.card {
+  display: flex; flex-direction: column;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+}
+.card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.card__body { display: flex; flex-direction: column; flex: 1; padding: var(--space-3); }
+.card__body h3 { font-size: 1.25rem; }
+.card__link { margin-top: auto; font-weight: 600; }
+
+/* Form: Grid for fields, Flexbox inside each field */
+.form { display: grid; grid-template-columns: 1fr; gap: var(--space-2); max-width: 40rem; }
+.field { display: flex; flex-direction: column; gap: .35rem; }
+.field label { font-weight: 600; }
+.field input, .field textarea {
+  font: inherit; color: var(--text); background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius); padding: .75rem 1rem;
+}
+.form .btn { justify-self: start; }
+
+.site-footer { padding: var(--space-3) 0; color: var(--muted); border-top: 1px solid var(--border); }
+
+/* ===== 7. Tablet: 768px and up ===== */
+@media (min-width: 48em) {
+  h2 { font-size: 2.25rem; }
+  .site-header { padding: var(--space-3) var(--space-4); grid-template-columns: 1fr auto; align-items: center; }
+  .site-header .profile { grid-column: 1 / -1; }
+  .content { padding: var(--space-4); }
+  .projects { grid-template-columns: repeat(2, 1fr); }
+  .card--featured { grid-column: 1 / -1; flex-direction: row; }
+  .card--featured img { width: 50%; aspect-ratio: auto; height: 100%; }
+  .form { grid-template-columns: 1fr 1fr; }
+  .field--full, .form .btn { grid-column: 1 / -1; }
+}
+
+/* ===== 8. Desktop: 1024px and up (sidebar + content) ===== */
+@media (min-width: 64em) {
+  .layout { grid-template-columns: 18rem minmax(0, 1fr); }
+  .site-header {
+    position: sticky; top: 0; height: 100vh; align-self: start;
+    grid-template-columns: 1fr; align-content: start; gap: var(--space-4);
+    padding: var(--space-4) var(--space-3);
+    border-bottom: 0; border-right: 1px solid var(--border);
+  }
+  .site-header .profile { flex-direction: column; align-items: flex-start; }
+  .avatar { width: 7.5rem; height: 7.5rem; }
+  .nav ul { flex-direction: column; gap: var(--space-2); }
+  .content { padding: var(--space-4) clamp(2rem, 5vw, 5rem); max-width: 80rem; }
+  .projects { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+  .card--featured { grid-column: 1 / -1; }
+}
+
+/* ===== 9. Accessibility ===== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}

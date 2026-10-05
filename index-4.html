@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Name | Web Developer Portfolio</title>
+  <meta name="description" content="Portfolio of Your Name, a web developer building responsive, accessible websites.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="layout">
+    <header class="site-header">
+      <div class="profile">
+        <img class="avatar" src="https://placehold.co/240x240/2f4bff/ffffff?text=YN" alt="Portrait of Your Name" width="120" height="120">
+        <h1>Your Name</h1>
+        <p class="role">Front-end developer</p>
+      </div>
+
+      <nav class="nav" aria-label="Main">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
+        <span class="theme-toggle__icon" aria-hidden="true"></span>
+        <span class="theme-toggle__label">Dark mode</span>
+      </button>
+    </header>
+
+    <main id="main" class="content">
+      <section id="about" class="hero">
+        <h2 class="hero__title">I build websites that fit every screen.</h2>
+        <p class="hero__text">I'm a student developer focused on clean HTML, thoughtful CSS and layouts that work on a phone, a tablet and a wide desktop monitor.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#projects">See my projects</a>
+          <a class="btn btn--ghost" href="#contact">Get in touch</a>
+        </div>
+      </section>
+
+      <section id="skills" class="section" aria-labelledby="skills-title">
+        <h2 id="skills-title">Skills</h2>
+        <ul class="tags">
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>CSS Grid</li>
+          <li>Flexbox</li>
+          <li>JavaScript</li>
+          <li>Git &amp; GitHub</li>
+          <li>Responsive design</li>
+          <li>Accessibility</li>
+        </ul>
+      </section>
+
+      <section id="projects" class="section" aria-labelledby="projects-title">
+        <h2 id="projects-title">Projects</h2>
+        <div class="projects">
+          <article class="card card--featured">
+            <img src="https://placehold.co/800x450/ffc857/14213d?text=Weather+App" alt="Screenshot of the weather app" loading="lazy" width="800" height="450">
+            <div class="card__body">
+              <h3>Weather dashboard</h3>
+              <p>Search any city and see a five-day forecast. Built with the fetch API and a mobile-first grid.</p>
+              <a class="card__link" href="#">View on GitHub</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="https://placehold.co/800x450/2f4bff/ffffff?text=Recipe+Site" alt="Screenshot of the recipe site" loading="lazy" width="800" height="450">
+            <div class="card__body">
+              <h3>Recipe collection</h3>
+              <p>A browsable set of recipes with filters and a print-friendly layout.</p>
+              <a class="card__link" href="#">View on GitHub</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="https://placehold.co/800x450/14213d/ffffff?text=Task+Tracker" alt="Screenshot of the task tracker" loading="lazy" width="800" height="450">
+            <div class="card__body">
+              <h3>Task tracker</h3>
+              <p>Add, complete and remove tasks. Saves your list in the browser.</p>
+              <a class="card__link" href="#">View on GitHub</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="section" aria-labelledby="contact-title">
+        <h2 id="contact-title">Contact</h2>
+        <form class="form" action="#" method="post">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field field--full">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button class="btn btn--primary" type="submit">Send message</button>
+        </form>
+      </section>
+
+      <footer class="site-footer">
+        <p>&copy; 2026 Your Name. Built with HTML and CSS.</p>
+      </footer>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
